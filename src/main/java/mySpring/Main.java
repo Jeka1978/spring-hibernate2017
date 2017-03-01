@@ -13,7 +13,7 @@ public class Main {
                 .age(12).firstName("Moshe")
                 .profession("developer")
                 .profession("Doctor").build();*/
-       new IRobot().cleanRoom();
+        factory.createObject(IRobot.class).cleanRoom();
         Elf elf = factory.createObject(Elf.class);
         System.out.println("elf = " + elf);
     }

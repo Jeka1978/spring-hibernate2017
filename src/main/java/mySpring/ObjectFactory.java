@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.reflections.Reflections;
 import org.slf4j.LoggerFactory;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import javax.annotation.PostConstruct;
+import java.lang.reflect.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,9 +43,35 @@ public class ObjectFactory {
         type = resolveImpl(type);
         T t = type.newInstance();
         configure(t);
+        Method[] methods = type.getMethods();
+        invokeInitMethods(t, methods);
+
+        if (type.isAnnotationPresent(Benchmark.class)) {
+            return (T) Proxy.newProxyInstance(type.getClassLoader(), type.getInterfaces(), new InvocationHandler() {
+                @Override
+                public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+                    System.out.println("********BENCHMARK******");
+                    System.out.println(method.getName()+" started");
+                    long start = System.nanoTime();
+                    Object retVal = method.invoke(t, args);
+                    long end = System.nanoTime();
+                    System.out.println(end-start+" nanos");
+                    System.out.println(method.getName()+" finished");
+                    return retVal;
+                }
+            });
+        }
 
 
         return t;
+    }
+
+    private <T> void invokeInitMethods(T t, Method[] methods) throws IllegalAccessException, InvocationTargetException {
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(PostConstruct.class)) {
+                method.invoke(t);
+            }
+        }
     }
 
     private <T> void configure(T t) {
