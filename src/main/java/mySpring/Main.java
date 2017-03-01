@@ -14,5 +14,7 @@ public class Main {
                 .profession("developer")
                 .profession("Doctor").build();*/
        new IRobot().cleanRoom();
+        Elf elf = factory.createObject(Elf.class);
+        System.out.println("elf = " + elf);
     }
 }
