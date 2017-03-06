@@ -4,19 +4,19 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-   <!--<bean class="quoters.ContextListener"/>-->
-    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
-
-    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
-
+    <bean class="org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor"/>
+    <bean class="quoters.bpp.InjectRandomIntAnnotationBeanPostProcessor"/>
+    <!--<bean class="quoters.ContextListener"/>-->
+    <context:annotation-config/>
+    <bean class="quoters.bpp.BenchmarkAnnotationBeanPostProcessor"/>
     <bean id="quote" class="java.lang.String">
         <constructor-arg value="Astalavista baby"/>
     </bean>
     <bean id="talkingRobot" class="quoters.TalkingRobotImpl">
         <property name="quoters">
             <list>
-               <ref bean="shakespearQuoter"/>
-               <ref bean="terminatorQuoter"/>
+                <ref bean="shakespearQuoter"/>
+                <ref bean="terminatorQuoter"/>
             </list>
         </property>
     </bean>

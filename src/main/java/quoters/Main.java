@@ -12,6 +12,5 @@ public class Main {
         context.getBean(TalkingRobot.class);
         context.getBean(TalkingRobot.class);
 
-        context.close();
     }
 }
