@@ -1,15 +1,18 @@
 package quoters;
 
+import lombok.Setter;
+
 import java.util.List;
 
 /**
  * Created by Evegeny on 06/03/2017.
  */
 public class TerminatorQuoter implements Quoter {
-    private List<String> message;
+    @Setter
+    private List<String> messages;
 
     @Override
     public void sayQuote() {
-        message.forEach(System.out::println);
+        messages.forEach(System.out::println);
     }
 }

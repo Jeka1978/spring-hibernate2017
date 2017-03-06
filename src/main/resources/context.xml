@@ -3,6 +3,16 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="iRobot" class="mySpring.IRobot" lazy-init="true">
+    <bean id="shakespearQuoter" class="quoters.ShakespearQuoter">
+        <property name="message" value="2 b || ! 2 b"/>
+    </bean>
+
+    <bean id="terminatorQuoter" class="quoters.TerminatorQuoter">
+        <property name="messages">
+            <list>
+                <value>I'll be back</value>
+                <value>trust me</value>
+            </list>
+        </property>
     </bean>
 </beans>
