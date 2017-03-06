@@ -1,15 +1,22 @@
 package quoters;
 
 import lombok.Setter;
+import mySpring.InjectRandomInt;
 
 /**
  * Created by Evegeny on 06/03/2017.
  */
 public class ShakespearQuoter implements Quoter {
+    @InjectRandomInt(min = 3,max = 6)
+    private int repeat;
+
+
     @Setter
     private String message;
     @Override
     public void sayQuote() {
-        System.out.println(message);
+        for (int i = 0; i < repeat; i++) {
+            System.out.println(message);
+        }
     }
 }
