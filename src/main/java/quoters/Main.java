@@ -1,6 +1,7 @@
 package quoters;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by Evegeny on 06/03/2017.
@@ -8,9 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class Main {
     public static void main(String[] args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("context.xml");
-        context.getBean(TalkingRobot.class);
-        context.getBean(TalkingRobot.class);
-        context.getBean(TalkingRobot.class);
 
+        context.close();
     }
 }

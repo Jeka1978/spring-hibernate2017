@@ -14,7 +14,7 @@ import java.lang.management.ManagementFactory;
 public class BenchmarkFlag implements BenchmarkFlagMBean {
     @Setter
     @Getter
-    private boolean enabled;
+    private boolean enabled = true;
 
     @SneakyThrows
     public BenchmarkFlag() {

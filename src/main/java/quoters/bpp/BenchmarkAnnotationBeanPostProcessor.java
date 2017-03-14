@@ -4,6 +4,7 @@ import mySpring.Benchmark;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.cglib.proxy.Enhancer;
+import org.springframework.stereotype.Component;
 import quoters.BenchmarkFlag;
 
 import java.lang.reflect.InvocationHandler;
@@ -13,6 +14,7 @@ import java.lang.reflect.Proxy;
 /**
  * Created by Evegeny on 06/03/2017.
  */
+@Component
 public class BenchmarkAnnotationBeanPostProcessor implements BeanPostProcessor {
 
     private BenchmarkFlag benchmarkFlag = new BenchmarkFlag();
