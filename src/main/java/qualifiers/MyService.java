@@ -5,18 +5,19 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import static qualifiers.DBType.MONGO;
+import static qualifiers.DBType.ORACLE;
+
 /**
  * Created by Evegeny on 14/03/2017.
  */
 @Service
 @EnableScheduling
 public class MyService {
-    @Autowired
-    @Oracle
+    @NiceRepo(ORACLE)
     private Dao backupDao;
 
-    @Autowired
-    @Mongo
+    @NiceRepo(MONGO)
     private Dao dao;
 
     @Scheduled(cron = "1/1 * * * * ?")

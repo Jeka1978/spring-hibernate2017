@@ -3,11 +3,12 @@ package qualifiers;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Repository;
 
+import static qualifiers.DBType.ORACLE;
+
 /**
  * Created by Evegeny on 14/03/2017.
  */
-@Repository
-@Oracle
+@NiceRepo(ORACLE)
 public class BackupDao implements Dao {
     @Override
     @SneakyThrows
