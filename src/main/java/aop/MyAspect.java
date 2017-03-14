@@ -1,5 +1,6 @@
 package aop;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -14,9 +15,15 @@ import org.springframework.stereotype.Component;
 @EnableAspectJAutoProxy
 public class MyAspect {
 
-    @Before("@annotation(Transaction)")
-    public void handleTransactionMethods(){
+    @Around("@annotation(Transaction)")
+    public void handleTransactionMethods(ProceedingJoinPoint pjp)  {
         System.out.println("********TRANS is OPENED*********");
+        try {
+            pjp.proceed();
+        } catch (Throwable throwable) {
+            System.out.println("Rollback");
+        }
+        System.out.println("********TRANS is Closed*********");
     }
 
 }

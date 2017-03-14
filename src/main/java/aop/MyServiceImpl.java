@@ -19,7 +19,7 @@ public class MyServiceImpl implements MyService {
     }
 
     @Override
-
+    @Transaction
     public void b() {
         System.out.println("BBBBBBbbbbbbbbbb");
         proxy.a();

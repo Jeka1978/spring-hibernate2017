@@ -16,9 +16,18 @@ public class ScreenSaverConfig {
 
     private Random random = new Random();
 
+    @Bean
+    public ColorFrame colorFrame(){
+        return new ColorFrame() {
+            @Override
+            protected Color getColorBean() {
+                return randomColor();
+            }
+        };
+    }
 
     @Bean
-    @Scope(value = "twoSeconds",proxyMode = ScopedProxyMode.TARGET_CLASS)
+    @Scope(value = "prototype")
     public Color randomColor(){
         return new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255));
     }

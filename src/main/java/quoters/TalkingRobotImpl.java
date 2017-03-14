@@ -12,6 +12,8 @@ import java.util.List;
  */
 @Component
 public class TalkingRobotImpl implements TalkingRobot {
+    @Autowired
+    private MyService myService;
 
     @Autowired(required = false)
     private List<Quoter> quoters = Arrays.asList(new Quoter() {
@@ -25,6 +27,7 @@ public class TalkingRobotImpl implements TalkingRobot {
     @Override
     @PostConstruct
     public void talk() {
+        myService.saySomething();
         for (Quoter quoter : quoters) {
             quoter.sayQuote();
         }
