@@ -1,10 +1,13 @@
 package orm.learning.dao;
 
+import org.hibernate.Session;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import orm.learning.model.Person;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 import static orm.learning.QueriesConstants.GET_ALL_PERSONS;
@@ -43,6 +46,10 @@ public class PersonDaoImpl implements PersonDao {
         Query query = entityManager.createQuery("from Person where age >:age");
 //        query.setFirstResult(10).setMaxResults(5)
         query.setParameter("age", age);
+//        CriteriaQuery<Object> criteriaQuery = entityManager.getCriteriaBuilder().createQuery();
+//        Root<Person> from = criteriaQuery.from(Person.class);
+//        criteriaQuery.select(from)
+//        Session delegate = (Session) entityManager.getDelegate();
         return query.getResultList();
     }
 }

@@ -30,9 +30,6 @@ public class Person {
     @GeneratedValue
     private int id;
 
-    @OneToMany(mappedBy = "myOwner",cascade = {ALL},orphanRemoval = true)
-    @ManyToMany
-    private Set<Event> events;
 
     public Person(String name, int age) {
         this.age = age;
