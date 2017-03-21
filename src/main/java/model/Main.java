@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Main {
     public static void main(String[] args) throws Exception {
         Person person = new Person(1, "Moshe");
-        User user = User.builder().favorite("food").favorite("beer").person(person).build();
+        User user = User.builder().person(person).favorite("beer").build();
 
         ObjectMapper mapper = new ObjectMapper();
         String json = mapper.writeValueAsString(user);

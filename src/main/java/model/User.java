@@ -1,9 +1,10 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import lombok.experimental.Delegate;
+import lombok.Builder;
+import lombok.experimental.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -11,14 +12,23 @@ import java.util.List;
  */
 
 @NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@ToString
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Setter
 public class User {
 
-    @Delegate
+    @lombok.experimental.Delegate(excludes = PersonExclude.class)
     private Person person = new Person();
+
     @Singular
     @Getter
-    private List<String> favorites = new ArrayList<>();
+    private List<String> favorites;
+
+    @JsonIgnore
+    public void setId(int id) {
+        this.person.setId(id);
+    }
+
+
 }
