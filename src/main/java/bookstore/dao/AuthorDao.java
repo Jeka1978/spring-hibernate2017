@@ -12,5 +12,6 @@ import java.util.List;
 public interface AuthorDao extends CrudRepository<Author,Long> {
 
 
+    @Query()
     List<Author> findPleeeeaseByBooksPriceLessThan(int price);
 }
